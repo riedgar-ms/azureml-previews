@@ -17,9 +17,17 @@ az ml component create --file score.yml --set version=<version_number>
 az ml component create --file eval.yml --set version=<version_number>
 ```
 
-3. Submit the Pipeline Job. 
+3. Register the dataset with the AzureML workspace
 
-Make sure the version of the components you registered matches with the version defined in pipeline.yml. Also, make sure the compute cluster used in pipeline.yml is the one that is actually available in your workspace. 
+```
+az ml data create --file data.yml
+```
+This will upload the contents of the `data` directory to the `workspaceblobstore` as a registered Dataset named `sampledata1`
+
+4. Submit the Pipeline Job. 
+
+Make sure the version of the components you registered matches with the version defined in `pipeline.yml`. Also, make sure the compute cluster used in `pipeline.yml` is the one that is actually available in your workspace.
+Note how the Dataset created in the previous set is bound to both `pipeline_job_training_input` and `pipeline_job_test_input`.
 
 Submit the Pipeline Job
 ```
