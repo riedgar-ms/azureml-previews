@@ -3,11 +3,11 @@ type: pipeline_job
 
 inputs:
   pipeline_job_training_input: #using dataset, can use datastore + datapath also
-    data: 
-      local_path: ./data
+    data: azureml:sampledata1
+    mode: mount
   pipeline_job_test_input:
-    data:
-      local_path: ./data
+    data: azureml:sampledata1
+    mode: mount
   pipeline_job_training_max_epocs: 20
   pipeline_job_training_learning_rate: 1.8
   pipeline_job_learning_rate_schedule: 'time-based'
